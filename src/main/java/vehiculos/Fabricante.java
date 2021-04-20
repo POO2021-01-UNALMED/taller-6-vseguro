@@ -7,28 +7,11 @@ public class Fabricante {
 	private String nombre;
 	private Pais pais;
 	
+	
 	public Fabricante(String nombre, Pais pa) {
 		this.nombre=nombre;
 		this.pais=pa;
 		fabricantes.add(this);
-		/*for(int i=0; i< fabricantes.size(); i++) {
-			
-				if (fabricantes.get(i).pais.equals(pa)){
-					pa.uso++;
-				}
-			}*/
-	
-		}
-	
-	public int uso() {
-		for(int i=0; i< fabricantes.size(); i++) {
-			{
-				if (fabricantes.get(i).pais.equals(pais)){
-					fabricantes.get(i).pais.uso++;
-				}
-			}
-		}
-		return pais.uso;
 	}
 	
 
@@ -57,7 +40,24 @@ public class Fabricante {
 		Fabricante.fabricantes = fabricantes;
 	}
 
-	public String fabricaMayorVentas() {
-		
+	public static Fabricante fabricaMayorVentas() {
+		int[] contadores = new int[fabricantes.size()];
+		for (int i = 0;i< Vehiculo.getVehiculos().size();i++){
+		for (int j = 0;j< Fabricante.getFabricantes().size();j++) {
+			if (Vehiculo.getVehiculos().get(i).getFabricante().equals(Fabricante.getFabricantes().get(j))) {
+				contadores[j]+=1;
+				break;
+			}
+		}
+		}
+		int max = contadores[0]; 
+		int indice = 0;
+		for(int i=0; i<contadores.length;i++) {
+			if (contadores[i]>max) {
+				max= contadores[i];
+				indice=i;
+			}
+		}
+		return Fabricante.getFabricantes().get(indice);
 	}
 }

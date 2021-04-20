@@ -3,7 +3,7 @@ package vehiculos;
 import java.util.ArrayList;
 
 public class Vehiculo {
-	private ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+	private static ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 	private String placa;
 	private int puertas;
 	private int velocidadMaxima;
@@ -100,6 +100,14 @@ public class Vehiculo {
 		Vehiculo.cantidadVehiculos=cantidadVehiculos;
 	}
 	
+	public static ArrayList<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+
+	public static void setVehiculos(ArrayList<Vehiculo> vehiculos) {
+		Vehiculo.vehiculos = vehiculos;
+	}
+
 	public static String vehiculosPorTipo() {
 		return "Automoviles: " + Automovil.creados+ "\n"+
 	    "Camionetas: " + Camioneta.creados + "\n" +
